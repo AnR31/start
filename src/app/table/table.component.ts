@@ -23,7 +23,7 @@ export class TableComponent implements OnInit {
       }))
   }
 
-  onTitleClick() {
+  onTitleClick(id: any) {
     console.log('omg');
     this.bodyVisible = !this.bodyVisible;
   }
