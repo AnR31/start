@@ -1,28 +1,28 @@
-<div class="table-container">
-  <label> ФИО
-    <input value="name"/>
-  </label>
-  <label>Почта
-    <input value="email"/>
+<div>
+ <p> <label> ФИО
+    <input value="{{userData['name']}}"/>
+  </label></p>
+  <p><label>Почта
+    <input value="{{userData.email}}"/>
   </label>
   <p>Адрес:</p>
-  <label>Улица
-    <input value="street"/>
+  <p><label>Улица
+    <input value="{{userData['address']['street']}}"/>
   </label>
-  <label>Дом
-    <input value="suite"/>
+  <p><label>Дом
+    <input value="{{userData['address']['suite']}}"/>
   </label>
-  <label>Город
-    <input value="city"/>
+  <p><label>Город
+    <input value="{{userData['address']['city']}}"/>
   </label>
-  <label>Индекс
-    <input value="zipcode"/>
+  <p><label>Индекс
+    <input value="{{userData['address']['zipcode']}}"/>
   </label>
-  <label>Телефон
-    <input value="phone"/>
+  <p><label>Телефон
+    <input value="{{userData.phone}}"/>
   </label>
-  <label>Вэб сайт
-    <input value="website"/>
+  <p><label>Вэб сайт
+    <input value="{{userData.website}}"/>
   </label>
-  <span>company.name</span>
+  <p><span>{{userData['company']['name']}}</span>
 </div>
