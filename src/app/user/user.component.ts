@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
 
@@ -7,7 +7,7 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, DoCheck {
 
   url = 'https://jsonplaceholder.typicode.com/users';
   users: any[] = [];
@@ -15,9 +15,14 @@ export class UserComponent implements OnInit {
   userData;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
+
   }
 
   ngOnInit(): void {
+
+  }
+
+  ngDoCheck(): void {
     let snapshot = this.route.snapshot;
     let snapshotElementElement = snapshot['params']['user'];
     this.userId = snapshotElementElement;
