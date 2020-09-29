@@ -1,28 +1,34 @@
 <div class="table-container">
- <p> <label> ФИО
-    <input value="{{userData?.name}}"/>
-  </label></p><br>
-  <p><label>Почта
-    <input value="{{userData?.email}}"/>
-  </label>
-  <p>Адрес:</p>
-  <p><label>Улица
-    <input value="{{userData?.address.street}}"/>
-  </label>
-  <p><label>Дом
-    <input value="{{userData?.address.suite}}"/>
-  </label>
-  <p><label>Город
-    <input value="{{userData?.address.city}}"/>
-  </label>
-  <p><label>Индекс
-    <input value="{{userData?.address.zipcode}}"/>
-  </label>
-  <p><label>Телефон
-    <input value="{{userData?.phone}}"/>
-  </label>
-  <p><label>Вэб сайт
-    <input value="{{userData?.website}}"/>
-  </label>
-  <p><span>{{userData?.company.name}}</span>
+  <table>
+    <tr>
+      <td><label>ФИО: <input value="{{userData?.name}}"/></label></td>
+    </tr>
+    <tr>
+      <td><label>Почта: <input value="{{userData?.email}}"/></label></td>
+    </tr>
+    <tr>
+      <td>Адрес:</td>
+    </tr>
+    <tr>
+      <td><label>Улица: <input value="{{userData?.address.street}}"/></label></td>
+    </tr>
+    <tr>
+      <td><label>Дом: <input value="{{userData?.address.suite}}"/></label></td>
+    </tr>
+    <tr>
+      <td><label>Город: <input value="{{userData?.address.city}}"/></label></td>
+    </tr>
+    <tr>
+      <td><label>Индекс: <input value="{{userData?.address.zipcode}}"/></label></td>
+    </tr>
+    <tr>
+      <td><label>Телефон: <input value="{{userData?.phone}}"/></label></td>
+    </tr>
+    <tr>
+      <td><label>Вэб сайт: <input value="{{userData?.website}}"/></label></td>
+    </tr>
+    <tr>
+      <td><span>Компания: {{userData?.company.name}}</span></td>
+    </tr>
+  </table>
 </div>

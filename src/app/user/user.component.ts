@@ -20,7 +20,7 @@ export class UserComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     let snapshot = this.route.snapshot;
-    let snapshotElementElement = snapshot['params']['user'];
+    let snapshotElementElement = snapshot.params.user;
     this.userId = snapshotElementElement;
 
 
@@ -44,7 +44,7 @@ export class UserComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     let snapshot = this.route.snapshot;
-    let snapshotElementElement = snapshot['params']['user'];
+    let snapshotElementElement = snapshot.params.user;
     if (this.userId != snapshotElementElement) {
       //console.log(snapshotElementElement);
       let superUsers: any[] = [];
