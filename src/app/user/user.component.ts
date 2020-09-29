@@ -24,45 +24,45 @@ export class UserComponent implements OnInit, DoCheck {
     this.userId = snapshotElementElement;
 
 
-    console.log(snapshotElementElement);
+    //console.log(snapshotElementElement);
     let superUsers: any[] = [];
     this.http
       .get<any[]>(this.url)
       .subscribe(response => response.forEach(value => {
         //console.log(value);
-        if (value['id'] == snapshotElementElement) {this.userData = value; console.log(value)}
+        if (value['id'] == snapshotElementElement) {this.userData = value; if (this.userData.name === undefined) this.userData.name = 'hello'}
         superUsers.push(value)
       }))
-    console.log(superUsers);
+    //console.log(superUsers);
     superUsers.forEach(value => {
-      console.log('value ' + value)
+      //console.log('value ' + value)
       if (value.id == this.userId) { this.userData = value}
 
     })
-    console.log(this.userData)
+    //console.log(this.userData)
   }
 
   ngDoCheck(): void {
     let snapshot = this.route.snapshot;
     let snapshotElementElement = snapshot['params']['user'];
     if (this.userId != snapshotElementElement) {
-      console.log(snapshotElementElement);
+      //console.log(snapshotElementElement);
       let superUsers: any[] = [];
       this.http
         .get<any[]>(this.url)
         .subscribe(response => response.forEach(value => {
           //console.log(value);
-          if (value['id'] == snapshotElementElement) {this.userData = value; console.log(value)}
+          if (value['id'] == snapshotElementElement) {this.userData = value}
           superUsers.push(value)
         }))
-      console.log(superUsers);
+      //console.log(superUsers);
       superUsers.forEach(value => {
-        console.log('value ' + value)
+        //console.log('value ' + value)
         if (value.id == this.userId) { this.userData = value}
 
       })
       this.userId = snapshotElementElement
-      console.log(this.userData)
+     // console.log(this.userData)
     }
   }
 
