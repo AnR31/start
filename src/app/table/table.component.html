@@ -7,7 +7,7 @@
       </tr>
       <tr *ngFor="let post of posts">
         <td (click)="onTitleClick()">{{post.title}}<p *ngIf="bodyVisible">{{post.body}}</p></td>
-        <td> <a [routerLink]="['/user', post.id]">author: {{post.userId}}</a></td>
+        <td> <a [routerLink]="['/user', post.userId]">author: {{post.userId}}</a></td>
       </tr>
     </table>
 </div>
