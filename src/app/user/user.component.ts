@@ -19,14 +19,12 @@ export class UserComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-
-  }
-
-  ngDoCheck(): void {
     let snapshot = this.route.snapshot;
     let snapshotElementElement = snapshot['params']['user'];
     this.userId = snapshotElementElement;
-    //console.log(snapshotElementElement);
+
+
+    console.log(snapshotElementElement);
     let superUsers: any[] = [];
     this.http
       .get<any[]>(this.url)
@@ -43,5 +41,30 @@ export class UserComponent implements OnInit, DoCheck {
     })
     console.log(this.userData)
   }
+
+  ngDoCheck(): void {
+    let snapshot = this.route.snapshot;
+    let snapshotElementElement = snapshot['params']['user'];
+    if (this.userId != snapshotElementElement) {
+      console.log(snapshotElementElement);
+      let superUsers: any[] = [];
+      this.http
+        .get<any[]>(this.url)
+        .subscribe(response => response.forEach(value => {
+          //console.log(value);
+          if (value['id'] == snapshotElementElement) {this.userData = value; console.log(value)}
+          superUsers.push(value)
+        }))
+      console.log(superUsers);
+      superUsers.forEach(value => {
+        console.log('value ' + value)
+        if (value.id == this.userId) { this.userData = value}
+
+      })
+      this.userId = snapshotElementElement
+      console.log(this.userData)
+    }
+  }
+
 
 }

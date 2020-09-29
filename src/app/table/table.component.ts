@@ -23,12 +23,12 @@ export class TableComponent implements OnInit {
       }))
   }
 
-  onTitleClick() {
+  onTitleClick(postId) {
     console.log('omg');
     this.bodyVisible = !this.bodyVisible;
   }
 
   onAuthorClick(userId: any) {
-    
+
   }
 }
