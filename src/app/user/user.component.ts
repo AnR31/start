@@ -1,6 +1,7 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute, Params} from "@angular/router";
+import {GetUserService} from "../get-user.service";
 
 @Component({
   selector: 'app-user',
@@ -14,57 +15,24 @@ export class UserComponent implements OnInit, DoCheck {
   userId;
   userData;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {
-
+  constructor(private route: ActivatedRoute, private http: HttpClient, private myserv: GetUserService) {
   }
-
+// директивы
   ngOnInit(): void {
-    let snapshot = this.route.snapshot;
-    let snapshotElementElement = snapshot.params.user;
-    this.userId = snapshotElementElement;
-
-
-    //console.log(snapshotElementElement);
-    let superUsers: any[] = [];
-    this.http
-      .get<any[]>(this.url)
-      .subscribe(response => response.forEach(value => {
-        //console.log(value);
-        if (value['id'] == snapshotElementElement) {this.userData = value; if (this.userData.name === undefined) this.userData.name = 'hello'}
-        superUsers.push(value)
-      }))
-    //console.log(superUsers);
-    superUsers.forEach(value => {
-      //console.log('value ' + value)
-      if (value.id == this.userId) { this.userData = value}
-
-    })
-    //console.log(this.userData)
+    let typedSnap: Params = this.route.snapshot.params;
+    this.userId = typedSnap.user;
+    this.userData = this.doRequest(this.userId);
   }
 
   ngDoCheck(): void {
-    let snapshot = this.route.snapshot;
-    let snapshotElementElement = snapshot.params.user;
-    if (this.userId != snapshotElementElement) {
-      //console.log(snapshotElementElement);
-      let superUsers: any[] = [];
-      this.http
-        .get<any[]>(this.url)
-        .subscribe(response => response.forEach(value => {
-          //console.log(value);
-          if (value['id'] == snapshotElementElement) {this.userData = value}
-          superUsers.push(value)
-        }))
-      //console.log(superUsers);
-      superUsers.forEach(value => {
-        //console.log('value ' + value)
-        if (value.id == this.userId) { this.userData = value}
-
-      })
-      this.userId = snapshotElementElement
-     // console.log(this.userData)
+    let newUserId = this.route.snapshot.params.user;
+    if (this.userId != newUserId) {
+      this.doRequest(this.userId);
+      this.userId = newUserId
     }
   }
 
-
+  doRequest(userId) {
+    this.myserv.doRequest().subscribe(response => response.forEach(value => { if (value.id == userId) { this.userData = value; }}))
+  }
 }
